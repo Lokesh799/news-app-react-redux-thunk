@@ -19,7 +19,6 @@ export default function Header() {
         </div>
       </nav>
       <div>
-        <img src="../src/img.webp" className="img-fluid" alt="Responsive image"/>
       </div>
     </>
   )

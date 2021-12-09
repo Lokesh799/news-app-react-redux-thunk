@@ -1,37 +1,36 @@
 import React, { useEffect } from "react";
-import { Card ,Button } from "antd";
+import { Card, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { newsDataRequest } from "../thunks/getNewsData";
-import Meta from "antd/lib/card/Meta";
 
-export default function NewsData() {
-  const newsData = useSelector((state) => state.setNewsData.newsRecords)
-  const dispatch = useDispatch();
-  console.log("newsData", newsData)
+export default function NewsData(props) {
+	const newsData = useSelector((state) => state.setNewsData.newsRecords)
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(newsDataRequest())
-  }, [dispatch])
+	const handleClick = (index,puslishedAt) => {
+		// console.log(index, puslishedAt, urlToImage)
+		props.history.push(`/desc/${index}/${puslishedAt}`);
+	}
 
-  return (
-    <>
-    {newsData.map((item)=>(
+	useEffect(() => {
+		dispatch(newsDataRequest())
+	}, [dispatch])
 
-<ul>{item.articles.map((data,index)=>( 
-    <Card
-    key={index}
-    hoverable
-    style={{width: "70%" }}
-    cover={<img alt="img" className="img-fluid" src={data.urlToImage} />}>
-   <Meta title={data.title}description={data.content}/>
-		<a href={data.url} target="_blank" rel="noopener noreferrer">
-    <Button  type="primary">Reed More..</Button> 
-  </a>
-		</Card>
-
-      
-))}</ul>
-    ))}
-    </>
-  )
+	return (
+		<>
+			{newsData.map((data, index) => (
+				// <ul>{item.articles.map((data, index) => (
+				<Card
+					key={index}
+					hoverable
+					style={{ width: "70%" }}
+					cover={<img alt="img" className="img-fluid" src={data.urlToImage} />}>
+					{/* <Meta title={data.title} description={data.content} /> 
+						<a href={data.url} target="_blank" rel="noopener noreferrer">
+						 </a> */}
+					<Button type="primary" onClick={() => handleClick(index, data.publishedAt)}>{data.title} <h6>Read More...</h6></Button>
+				</Card>
+			))}
+		</>
+	)
 }
