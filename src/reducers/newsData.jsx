@@ -1,7 +1,7 @@
 import { SET_NEWS_DATA } from "../actions";
 
 const initialState = {
- newsRecords: [],
+  newsRecords: [],
 }
 
 const setNewsData = (state = initialState, action) => {

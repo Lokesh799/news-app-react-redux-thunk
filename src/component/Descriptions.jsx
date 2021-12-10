@@ -5,14 +5,17 @@ export default function Description(props) {
   const desc = useSelector((state) => state.setNewsData.newsRecords)
   console.log(desc)
   const id = props.match.params.id
-  // const publish = props.match.params.publishedAt
-  // const img = props.match.params.urlToImage
 
   return (
     <>
-      <h1>Helo description here</h1>
-      {desc[id].description}
-      {<img alt="img" className="img-fluid" src={desc[id].urlToImage}/>}
+
+      <div class="card  justify-content-center" style={{ width: "40rem" }}  >
+        {<img alt="img" className="img-fluid" src={desc[id].urlToImage} />}
+        <div class="card-body">
+          <h5 class="card-title"> {desc[id].description}</h5>
+        </div>
+      </div>
+
     </>
   )
 }

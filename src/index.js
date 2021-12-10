@@ -5,8 +5,6 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Header from './container/Header';
-import NewsData from './component/NewsData';
 
 ReactDOM.render(
   <Provider store={store}>
